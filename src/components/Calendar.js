@@ -1,6 +1,6 @@
 import React from "react";
 
-const styledCalendar = props => {
+const Calendar = props => {
   return (
     <div
       style={{
@@ -16,4 +16,4 @@ const styledCalendar = props => {
   );
 };
 
-export default styledCalendar;
+export default Calendar;
