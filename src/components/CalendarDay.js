@@ -1,11 +1,11 @@
 import React from "react";
 
-const styledCalendarDay = props => {
+const CalendarDay = props => {
   const bg = () => {
     if (props.isEnd) return "#f7c99b";
     if (props.isSelected) return "red";
     if (props.isInBetween) return "red";
-    return "none";
+    return;
   };
   const back = bg();
   return (
@@ -28,4 +28,4 @@ const styledCalendarDay = props => {
   );
 };
 
-export default styledCalendarDay;
+export default CalendarDay;

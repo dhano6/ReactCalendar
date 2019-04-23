@@ -1,16 +1,16 @@
 import React, { useState } from "react";
 import ReactDOM from "react-dom";
-import StyledDateChooser from "./components/StyledDateChooser";
-import StyledDateChooserButton from "./components/StyledDateChooserButton";
-import StyledCalendar from "./components/StyledCalendar";
-import StyledCalendarDay from "./components/StyledCalendarDay";
+import DateChooser from "./components/DateChooser";
+import DateChooserButton from "./components/DateChooserButton";
+import Calendar from "./components/Calendar";
+import CalendarDay from "./components/CalendarDay";
 import "./styles.css";
 
 const App = () => {
   const [dateType, setDateType] = useState("start"); // start/end
   const [startDate, setStartDate] = useState(null);
-  const [hoverDate, setHoverDate] = useState(null);
   const [endDate, setEndDate] = useState(null);
+  const [hoverDate, setHoverDate] = useState(null);
 
   const calendarDates = Array(31)
     .fill(0)
@@ -38,8 +38,8 @@ const App = () => {
 
   return (
     <div className="App">
-      <StyledDateChooser>
-        <StyledDateChooserButton
+      <DateChooser>
+        <DateChooserButton
           onClick={() => setDateType("start")}
           isChoosing={dateType === "start"}
         >
@@ -47,17 +47,17 @@ const App = () => {
           <span style={{ display: "block", fontSize: "50px" }}>
             {startDate}
           </span>
-        </StyledDateChooserButton>
-        <StyledDateChooserButton
+        </DateChooserButton>
+        <DateChooserButton
           onClick={() => setDateType("end")}
           isChoosing={dateType === "end"}
         >
           End Date
           <span style={{ display: "block", fontSize: "50px" }}>{endDate}</span>
-        </StyledDateChooserButton>
-      </StyledDateChooser>
+        </DateChooserButton>
+      </DateChooser>
 
-      <StyledCalendar>
+      <Calendar>
         {calendarDates.map((day, index) => {
           const realDayNumber = index + 1;
           let isSelected = false;
@@ -66,7 +66,7 @@ const App = () => {
           if (realDayNumber === endDate) isSelected = true; // end
 
           return (
-            <StyledCalendarDay
+            <CalendarDay
               key={index}
               isSelected={isSelected}
               isInBetween={isInBetween}
@@ -78,10 +78,10 @@ const App = () => {
               }}
             >
               {realDayNumber}
-            </StyledCalendarDay>
+            </CalendarDay>
           );
         })}
-      </StyledCalendar>
+      </Calendar>
     </div>
   );
 };

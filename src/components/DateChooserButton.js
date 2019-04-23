@@ -1,6 +1,6 @@
 import React from "react";
 
-const styledDateChooserButton = props => {
+const DateChooserButton = props => {
   return (
     <button
       onClick={props.onClick}
@@ -19,4 +19,4 @@ const styledDateChooserButton = props => {
   );
 };
 
-export default styledDateChooserButton;
+export default DateChooserButton;
