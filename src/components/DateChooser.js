@@ -1,6 +1,6 @@
 import React from "react";
 
-const styledDateChooser = props => {
+const dateChooser = props => {
   return (
     <div style={{ display: "flex", marginBottom: "20px" }}>
       {props.children}
@@ -8,4 +8,4 @@ const styledDateChooser = props => {
   );
 };
 
-export default styledDateChooser;
+export default dateChooser;

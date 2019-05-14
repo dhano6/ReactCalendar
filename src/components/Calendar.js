@@ -4,11 +4,13 @@ const Calendar = props => {
   return (
     <div
       style={{
-        maxWidth: "400px",
-        border: "1px solid black",
+        maxWidth: "411px",
+        borderRadius: "10px",
         display: "grid",
-        gridTemplateColumns: "repeat(7, 1fr)",
-        background: "#fff"
+        gridTemplateColumns: "repeat(7, 53px)",
+        background: "#fff",
+        boxShadow: "5px 5px 20px #ccc",
+        padding: "20px"
       }}
     >
       {props.children}

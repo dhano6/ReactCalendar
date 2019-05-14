@@ -18,12 +18,25 @@ const App = () => {
 
   const updateDate = day => {
     if (dateType === "start") {
-      if (endDate && day > endDate) return;
+      if (endDate && day > endDate) {
+        setStartDate(day);
+        setEndDate(null);
+        setDateType("end");
+        return;
+      }
       setStartDate(day);
       setDateType("end");
       return;
     }
-    setEndDate(day);
+    if (dateType === "end") {
+      if (startDate && day < startDate) {
+        setStartDate(day);
+        setDateType("end");
+        return;
+      }
+      setEndDate(day);
+      return;
+    }
   };
 
   const handleHover = day => {
@@ -33,7 +46,7 @@ const App = () => {
 
   const checkInBetween = day => {
     if (!endDate) return day > startDate && day < hoverDate;
-    return day > startDate && day < endDate;
+    if (startDate) return day > startDate && day < endDate;
   };
 
   return (
@@ -42,24 +55,20 @@ const App = () => {
         <DateChooserButton
           onClick={() => setDateType("start")}
           isChoosing={dateType === "start"}
-        >
-          Start Date
-          <span style={{ display: "block", fontSize: "50px" }}>
-            {startDate}
-          </span>
-        </DateChooserButton>
+          dateType={"start"}
+          startDate={startDate}
+        />
         <DateChooserButton
           onClick={() => setDateType("end")}
           isChoosing={dateType === "end"}
-        >
-          End Date
-          <span style={{ display: "block", fontSize: "50px" }}>{endDate}</span>
-        </DateChooserButton>
+          dateType={"end"}
+          endDate={endDate}
+        />
       </DateChooser>
-
       <Calendar>
-        {calendarDates.map((day, index) => {
-          const realDayNumber = index + 1;
+        {calendarDates.map(day => {
+          // day was created from index e.g. starting from 0
+          const realDayNumber = day + 1;
           let isSelected = false;
           let isInBetween = checkInBetween(realDayNumber);
           if (realDayNumber === startDate) isSelected = true; // start
@@ -67,10 +76,14 @@ const App = () => {
 
           return (
             <CalendarDay
-              key={index}
-              isSelected={isSelected}
+              key={day}
+              isStartOrEndSelected={isSelected}
+              isStartSelected={startDate}
+              isEndSelected={endDate}
               isInBetween={isInBetween}
+              isStart={startDate === realDayNumber}
               isEnd={endDate === realDayNumber}
+              startEndAreEqual={startDate === endDate}
               onClick={() => updateDate(realDayNumber)}
               onMouseEnter={() => {
                 if (endDate) return;

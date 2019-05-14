@@ -1,11 +1,12 @@
 * {
   padding: 0;
   margin: 0;
+  box-sizing: border-box;
 }
 
 body {
-  font-family: sans-serif;
-  background: #4840b4;
+  font-family: "Montserrat", sans-serif;
+  background: #fcfcfc;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
@@ -13,6 +14,6 @@ body {
   justify-content: center;
 }
 
-.calendarButton:hover {
-  background: #f7c99b;
+.calendarDay:hover {
+  background: rgb(50, 208, 236) !important;
 }

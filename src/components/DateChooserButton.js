@@ -5,16 +5,24 @@ const DateChooserButton = props => {
     <button
       onClick={props.onClick}
       style={{
-        color: "#fff",
+        color: "#222741",
         flex: "1",
         padding: "15px",
         background: "none",
         cursor: "pointer",
         border: "none",
-        borderBottom: props.isChoosing ? "2px solid #fff" : "none"
+        fontSize: "20px",
+        fontWeight: "700",
+        outline: "none",
+        borderBottom: props.isChoosing
+          ? "2px solid #222741"
+          : "2px solid transparent"
       }}
     >
-      {props.children}
+      {props.dateType === "start" ? "Start Date" : "End Date"}
+      <span style={{ display: "block", fontSize: "50px" }}>
+        {props.dateType === "start" ? props.startDate : props.endDate}
+      </span>
     </button>
   );
 };
